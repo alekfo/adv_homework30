@@ -32,7 +32,7 @@ jobs:
     
     # Шаг 5: Проверка импортов
     - name: Check import sorting (isort)
-      run: isort --check-only main/ tests/
+      run: isort --check-only --profile black main/ tests/
     
     # Шаг 6: Проверка типов
     - name: Type checking (mypy)
