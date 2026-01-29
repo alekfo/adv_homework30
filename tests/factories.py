@@ -10,10 +10,10 @@ class ClientFactory(factory.alchemy.SQLAlchemyModelFactory):
         model = Client
         sqlalchemy_session = db.session
 
-    name = Faker('first_name')
-    surname = Faker('last_name')
-    credit_card = factory.Faker('credit_card_number')
-    car_number = factory.Faker('license_plate')
+    name = Faker("first_name")
+    surname = Faker("last_name")
+    credit_card = factory.Faker("credit_card_number")
+    car_number = factory.Faker("license_plate")
 
 
 class ParkingFactory(factory.alchemy.SQLAlchemyModelFactory):
@@ -21,7 +21,9 @@ class ParkingFactory(factory.alchemy.SQLAlchemyModelFactory):
         model = Parking
         sqlalchemy_session = db.session
 
-    address = Faker('address')
-    opened = factory.Faker('boolean', chance_of_getting_true=80)  # 80% шанс что открыта
-    count_places = factory.Faker('random_int', min=10, max=100)
-    count_available_places = factory.LazyAttribute(lambda o: o.count_places if o.opened else 0)
+    address = Faker("address")
+    opened = factory.Faker("boolean", chance_of_getting_true=80)  # 80% шанс что открыта
+    count_places = factory.Faker("random_int", min=10, max=100)
+    count_available_places = factory.LazyAttribute(
+        lambda o: o.count_places if o.opened else 0
+    )
