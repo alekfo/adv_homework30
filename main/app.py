@@ -119,5 +119,6 @@ def create_app():
     return app
 
 if __name__ == "__main__":
+    print('Hello_world')
     app = create_app()
     app.run()
