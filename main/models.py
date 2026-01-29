@@ -1,12 +1,15 @@
-from typing import Dict, Any
+from typing import Any, Dict
+
+from flask_sqlalchemy import SQLAlchemy
+
 # from database import db
 from sqlalchemy import UniqueConstraint
-from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Client(db.Model):
-    __tablename__ = 'client'
+
+class Client(db.Model):  # type: ignore
+    __tablename__ = "client"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -18,12 +21,11 @@ class Client(db.Model):
         return f"Клиент {self.name} {self.surname}"
 
     def to_json(self) -> Dict[str, Any]:
-        return {c.name: getattr(self, c.name) for c in
-                self.__table__.columns}
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-class Parking(db.Model):
-    __tablename__ = 'parking'
+class Parking(db.Model):  # type: ignore
+    __tablename__ = "parking"
 
     id = db.Column(db.Integer, primary_key=True)
     address = db.Column(db.String(100), nullable=False)
@@ -35,14 +37,14 @@ class Parking(db.Model):
         return f"Парковка {self.address}"
 
     def to_json(self) -> Dict[str, Any]:
-        return {c.name: getattr(self, c.name) for c in
-                self.__table__.columns}
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
-class ClientsParking(db.Model):
-    __tablename__ = 'client_parking'
 
-    client_id = db.Column(db.Integer, db.ForeignKey('client.id'), primary_key=True)
-    parking_id = db.Column(db.Integer, db.ForeignKey('parking.id'), primary_key=True)
+class ClientsParking(db.Model):  # type: ignore
+    __tablename__ = "client_parking"
+
+    client_id = db.Column(db.Integer, db.ForeignKey("client.id"), primary_key=True)
+    parking_id = db.Column(db.Integer, db.ForeignKey("parking.id"), primary_key=True)
     time_in = db.Column(db.DateTime, nullable=True)
     time_out = db.Column(db.DateTime, nullable=True)
 
@@ -53,7 +55,4 @@ class ClientsParking(db.Model):
         return f"Клиент-парковка {self.client_id} {self.parking_id}"
 
     def to_json(self) -> Dict[str, Any]:
-        return {c.name: getattr(self, c.name) for c in
-                self.__table__.columns}
-
-
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
