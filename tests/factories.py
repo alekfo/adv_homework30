@@ -1,8 +1,10 @@
+from datetime import datetime
+
 import factory
 from factory.faker import Faker
-from main.models import Client, Parking, ClientsParking
+
 from main.app import db
-from datetime import datetime
+from main.models import Client, ClientsParking, Parking
 
 
 class ClientFactory(factory.alchemy.SQLAlchemyModelFactory):

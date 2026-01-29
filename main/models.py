@@ -1,13 +1,14 @@
-from typing import Dict, Any
+from typing import Any, Dict
+
+from flask_sqlalchemy import SQLAlchemy
 
 # from database import db
 from sqlalchemy import UniqueConstraint
-from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
 
-class Client(db.Model):
+class Client(db.Model):  # type: ignore
     __tablename__ = "client"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +24,7 @@ class Client(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-class Parking(db.Model):
+class Parking(db.Model):  # type: ignore
     __tablename__ = "parking"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -39,7 +40,7 @@ class Parking(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-class ClientsParking(db.Model):
+class ClientsParking(db.Model):  # type: ignore
     __tablename__ = "client_parking"
 
     client_id = db.Column(db.Integer, db.ForeignKey("client.id"), primary_key=True)

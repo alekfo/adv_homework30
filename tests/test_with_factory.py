@@ -1,8 +1,11 @@
 import json
-import pytest
-from .factories import ClientFactory, ParkingFactory
-from main.models import Client, Parking, ClientsParking
 import logging
+
+import pytest
+
+from main.models import Client, ClientsParking, Parking
+
+from .factories import ClientFactory, ParkingFactory
 
 logging.basicConfig(
     level=logging.DEBUG,

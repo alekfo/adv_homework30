@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -7,8 +7,10 @@ sys.path.insert(0, project_root)
 sys.path.insert(0, os.path.join(project_root, "main"))
 
 import pytest
-from main.app import create_app, db as _db
-from main.models import Client, Parking, ClientsParking
+
+from main.app import create_app
+from main.app import db as _db
+from main.models import Client, ClientsParking, Parking
 
 
 @pytest.fixture

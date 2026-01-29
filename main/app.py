@@ -1,11 +1,10 @@
-from flask import Flask, request, jsonify
-from typing import List
-
 # from database import db
 from datetime import datetime
-from sqlalchemy.exc import IntegrityError
+from typing import List
 
-from models import Client, Parking, ClientsParking, db
+from flask import Flask, jsonify, request
+from models import Client, ClientsParking, Parking, db
+from sqlalchemy.exc import IntegrityError
 
 
 def create_app():
